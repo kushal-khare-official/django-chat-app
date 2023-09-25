@@ -7,7 +7,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-lao1ys2w*%*g0
 
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ["https://django-chat-app-81aw.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
