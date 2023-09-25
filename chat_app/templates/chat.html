@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<div class="flex h-screen w-screen">
+    <aside class="bg-white w-1/4 p-4 border-r border-gray-300">
+        <h2 class="text-lg font-semibold mb-4">Online Users</h2>
+        <ul id="online-users"></ul>
+    </aside>
+    {%if room_id != 0%}
+        {% include "chat_room.html" with room_id=room_id %}
+    {% endif %}
+</div>
+{% if not request.session.user_id %}
+<script>
+    window.location.href = "/login";
+</script>
+{% endif %}
+<script>
+    getOnlineUsers('{{ request.session.token }}', '{{ request.session.user_id }}');
+</script>
+{% endblock %}

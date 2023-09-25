@@ -1,0 +1,16 @@
+<main class="flex-grow p-4">
+    <div class="bg-white rounded-lg shadow-md mb-4 p-4">
+        <h2 class="text-lg font-semibold">Chat Room {{ room_id }}</h2>
+    </div>
+    <div id="chat-messages" class="overflow-y-auto max-h-[400px]"></div>
+    <form id="chat-form" class="mt-4 flex">
+        <input id="chat-input" type="text" placeholder="Type your message..."
+               class="w-full rounded-l-md p-2 border border-gray-300 focus:outline-none">
+        <button
+                class="bg-blue-500 text-white py-2 px-4 rounded-r-md hover:bg-blue-600 focus:outline-none">Send
+        </button>
+    </form>
+</main>
+<script>
+    openSocket('{{ request.session.token }}', {{ request.session.user_id }}, {{ room_id }});
+</script>
