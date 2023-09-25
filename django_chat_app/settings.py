@@ -8,15 +8,21 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-lao1ys2w*%*g0
 DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000"
+]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    CORS_ALLOWED_ORIGINS.append(RENDER_EXTERNAL_HOSTNAME)
 
 INSTALLED_APPS = [
     'channels',
     'chat_app_api',
     'chat_app',
+    'corsheaders',
     'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -29,6 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
